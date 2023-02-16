@@ -1,10 +1,11 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# Continuous delivery
+name: Build and deploy
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    tags: ["v*"]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -51,7 +52,7 @@ jobs:
         run: flutter test
 
       - name: Build web
-        run: flutter build web
+        run: flutter build web --base-href='/calendar/'
 
       # - name: Build apk
       #   run: flutter build apk
